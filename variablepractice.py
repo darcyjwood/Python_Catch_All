@@ -13,4 +13,14 @@ print(name + ", our specials for the day are " + specials + ".")
 
 order = input("What would you like to order?\n\n")
 
+cost = 12
+
+quantity = input("How many would you like?\n")
+
+total = (cost * int(quantity))
+
+print("Thank you. Your total is: " + str(total ) + " Thank you.")
+
+print("Sounds great " + name + ", your price for that will be " + str(total))
+
 print("Great! Your " + order + " will be ready shortly!")
