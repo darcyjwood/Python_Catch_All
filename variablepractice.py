@@ -15,12 +15,10 @@ order = input("What would you like to order?\n\n")
 
 cost = 12
 
-quantity = input("How many would you like?\n")
+quantity = input("How many would you like?\n\n")
 
 total = (cost * int(quantity))
 
-print("Thank you. Your total is: " + str(total ) + " Thank you.")
-
-print("Sounds great " + name + ", your price for that will be " + str(total))
+print("Sounds great " + name + ", your price for that will be $" + str(total))
 
 print("Great! Your " + order + " will be ready shortly!")
