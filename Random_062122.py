@@ -1,10 +1,10 @@
 # test print statement
-print("Hello World")
 
-Hello = "Hello"
-var_1 = Hello World
+#sample_text = input()
+#result = sample_text.title()
+#print(result)
 
-print(var_1)
+#string = input()
+#print(string.title())
 
-
-
+print(input().title())
