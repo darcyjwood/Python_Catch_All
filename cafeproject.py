@@ -22,8 +22,11 @@ else:
     print("Nice to meet you " + name + ", thanks for coming in today.\n")
 
 #menu specials
+#menu items = ["grilled cheese": 9, "tomato soup": 6, "blt": 9, "greens": 6]
+
 specials = "tomato soup, grilled cheese, greens, and a blt"
 
+#tell them the specials for the day
 print(name + ", our specials for the day are " + specials + ".")
 
 #ask them what they want to order
@@ -31,7 +34,9 @@ order = input("What would you like to order?\n\n")
 
 #Set the price for items
 #there has to be a way to clean this up
+#can I use my menu items list?
 #is there a way to return all combinations effectivly and without the "and" even if the user types it in
+
 if order == "tomato soup":
     cost = 6
 elif order == "grilled cheese":
@@ -55,6 +60,8 @@ elif order == "greens" and "blt":
 else:
     print("Uh oh, we don't have that item")
     exit()
+    
+
 
 #find out how many they want
 #quantity = input("How many would you like?\n\n")
