@@ -6,9 +6,11 @@ words = phrase.split()
 
 print(words)
 
-joined = '-'.join(words)
+joined = ' '.join(words)
 
-print(joined)
+titled = joined.title()
+
+print(titled)
 
 
 
