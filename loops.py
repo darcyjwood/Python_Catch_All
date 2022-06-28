@@ -103,16 +103,17 @@ colors = ['red', 'blue', 'orange', 'green', 'yellow']
 uppercase_colors = [color.upper() for color in colors]
 print(uppercase_colors)
 
-#filering
+#filering long version
 warm_colors = []
 for color in colors:
     if color in ['red', 'orange', 'yellow']:
         warm_colors.append(color)
         print(warm_colors)
 
-#shorter version
+#shorter version of filtering
 colors = ['red', 'blue', 'orange', 'green', 'yellow']
 warm_colors = [color for color in colors if color in ['red', 'orange', 'yellow']]
 print(warm_colors)
 
-#next up fizz buzz, see fizz buzz file
+#next up fizz buzz, see fizz buzz file  
+
