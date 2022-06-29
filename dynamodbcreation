@@ -1,3 +1,4 @@
+#TABLE CREATION
 #dynamodb table creation
 import boto3
 
@@ -32,3 +33,21 @@ table = dynamodb.create_table (
           
     )
 print(table)
+
+#ADD ITEMS
+#dynamodb add items to table
+
+import boto3
+
+dynamodb = boto3.resource('dynamodb')
+
+table = dynamodb.Table('WoodCafe')
+
+response = table.put_item(
+    Item = {
+        'Special': 'grilled cheese',
+        'Price': int('9')
+    }
+)
+print(response)
+
