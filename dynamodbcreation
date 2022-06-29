@@ -1,0 +1,34 @@
+#dynamodb table creation
+import boto3
+
+dynamodb = boto3.resource('dynamodb')
+
+table = dynamodb.create_table (
+    TableName ='WoodCafe',
+       KeySchema = [
+           {
+               'AttributeName': 'Special',
+               'KeyType': 'HASH'
+           },
+           {
+               'AttributeName': 'Price',
+               'KeyType': 'RANGE'
+           }
+           ],
+           AttributeDefinitions = [
+               {
+                   'AttributeName': 'Special',
+                   'AttributeType': 'S'
+               },
+               {
+                   'AttributeName':'Price',
+                   'AttributeType': 'N'
+               }
+            ],
+            ProvisionedThroughput={
+                'ReadCapacityUnits':10,
+                'WriteCapacityUnits':10
+            }
+          
+    )
+print(table)
