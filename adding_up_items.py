@@ -19,4 +19,4 @@ while items != 'nothing':
     if choice in items:
         the_choice = price[choice]
     else:
-        print("Uh oh, I don't know about that item")
+        print("Uh oh, I don't know about that item.")
