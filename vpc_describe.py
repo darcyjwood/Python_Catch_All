@@ -10,4 +10,4 @@ no_of_vpcs = x["Vpcs"]
 len(no_of_vpcs)
 
 for vpc in no_of_vpcs:
-    print(vpc["Vpcs"])
+    print(vpc["VpcId"])
