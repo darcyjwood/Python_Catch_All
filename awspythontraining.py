@@ -303,3 +303,241 @@ with open(filename, 'r' ) as variable_name:
     <Do something with the variable here>
 
 
+{
+    "Input":[
+        {
+        "Text":"What is cloud computing?",
+        "SourceLanguageCode":"en",
+        "TargetLanguageCode":"fr"
+        },
+        {
+        "Text":"Cloud computing is the on-demand delivery of IT resources over the Internet with pay-as-you-go pricing.",
+        "SourceLanguageCode":"en",
+        "TargetLanguageCode":"fr"
+        },
+        {
+        "Text":"Instead of buying, owning, and maintaining physical data centers and servers, you can access technology services, such as computing power, storage, and databases, on an as-needed basis from a cloud provider like Amazon Web Services (AWS)",
+        "SourceLanguageCode":"en",
+        "TargetLanguageCode":"fr"
+        },
+        {       
+        "Text":"Who is using cloud computing?",
+        "SourceLanguageCode":"en",
+        "TargetLanguageCode":"fr"
+        },
+        {       
+        "Text":"Organizations of every type, size, and industry are using the cloud for a wide variety of use cases, such as data backup, disaster recovery, email, virtual desktops, software development and testing, big data analytics, and customer-facing web applications.",
+        "SourceLanguageCode":"en",
+        "TargetLanguageCode":"fr"
+        },
+        {       
+        "Text":"For example, healthcare companies are using the cloud to develop more personalized treatments for patients. Financial services companies are using the cloud to power real-time fraud detection and prevention.",
+        "SourceLanguageCode":"en",
+        "TargetLanguageCode":"fr"
+        },        
+        {       
+        "Text":"And video game makers are using the cloud to deliver online games to millions of players around the world.",
+        "SourceLanguageCode":"en",
+        "TargetLanguageCode":"fr"
+        }
+    ] 
+} 
+
+
+# Standard Imports
+import argparse
+import json
+
+# 3rd Party Imports
+import boto3 
+
+# Arguments
+parser = argparse.ArgumentParser(description="Provides translation  between one source language and another of the same set of languages.")
+parser.add_argument(
+    '--file',
+    dest='filename',
+    help="The path to the input file. The file should be valid json",
+    required=True)
+
+args = parser.parse_args()
+
+# Functions
+def open_input():
+    """This function returns a dictionary containing the contents of the Input section in the input file""" 
+    with open(args.filename) as file_object:
+        contents = json.load(file_object)
+    return contents['Input']
+
+# Boto3 function to use Amazon Translate to translate the text and only return the Translated Text
+def translate_text(**kwargs): 
+    client = boto3.client('translate')
+    response = client.translate_text(**kwargs)
+    print(response['TranslatedText']) 
+
+# Add a Loop to iterate over the json file.
+def translate_loop():
+    input_text = open_input()
+    for item in input_text: # Here we iterate over all dictionaries in the Input list
+        translate_text(**item)
+
+# Main Function - use to call other functions
+def main():
+    translate_loop()
+
+if __name__ == "__main__":
+    main()
+
+
+# Create a list of the input text
+def new_input_text_list():
+    input_text = open_input()
+    new_list = []
+    for item in input_text:
+        text = item['Text']
+        new_list.append(text)
+    print(new_list)
+
+
+def main():
+    new_input_text_list()
+    translate_loop()
+
+
+def new_list_comprehension():
+    input_text = open_input()
+    list_comprehension = [item['Text'] for item in input_text]
+    print(list_comprehension)
+
+def main():
+    new_input_text_list()
+    translate_loop()
+    new_list_comprehension()
+
+
+import json
+
+# This uses a json string as an input 
+json_string = """
+{
+    "Input":[
+        {
+        "Text":"I am learning to code in AWS",
+        "SourceLanguageCode":"en",
+        "TargetLanguageCode":"fr"
+        }
+    ]
+}
+"""
+
+json_input = json.loads(json_string) # We use loads as we are loading from a string.
+
+# Defines two variables to store the language code from the input.
+SourceLanguageCode = json_input['Input'][0]['SourceLanguageCode']
+TargetLanguageCode = json_input['Input'][0]['TargetLanguageCode']
+
+# The if statement checks to see if the language code is the same as the source code
+if SourceLanguageCode == TargetLanguageCode:
+    print("The SourceLanguageCode is the same as the TargetLanguageCode - stopping")
+else:
+    print("The Source Language and Target Language codes are different - proceeding")
+
+
+
+#LOGGING
+
+# Import logging
+import logging
+import json
+
+# This uses a json string as an input
+json_string = """
+{
+    "Input":[
+        {
+        "Text":"I am learning to code in AWS",
+        "SourceLanguageCode":"en",
+        "TargetLanguageCode":"fr"
+        }
+    ]
+}
+"""
+
+json_input = json.loads(json_string)
+
+# Defines two variables to store the language code from the input.
+SourceLanguageCode = json_input['Input'][0]['SourceLanguageCode']
+TargetLanguageCode = json_input['Input'][0]['TargetLanguageCode']
+
+# The if statement checks to see if the language code is the same as the source code
+if SourceLanguageCode == TargetLanguageCode:
+    logging.warning("The SourceLanguageCode is the same as the TargetLanguageCode - stopping") # This will print to the console as the default level is warning
+else:
+    logging.info("The Source Language and Target Language codes are different - proceeding") # This will not print to the console because it is lower than warning
+
+
+
+
+# Import logging
+import logging
+import json
+
+# Set the log level in the basic configuration.  This means we will capture all our log entries and not just those at Warning or above.
+logging.basicConfig(filename='example.log',level=logging.DEBUG)
+
+# This uses a json string as an input
+json_string = """
+{
+    "Input":[
+        {
+        "Text":"I am learning to code in AWS",
+        "SourceLanguageCode":"en",
+        "TargetLanguageCode":"fr"
+        }
+    ]
+}
+"""
+
+json_input = json.loads(json_string)
+
+# Defines two variables to store the language code from the input.
+SourceLanguageCode = json_input['Input'][0]['SourceLanguageCode']
+TargetLanguageCode = json_input['Input'][0]['TargetLanguageCode']
+
+# The if statement checks to see if the language code is the same as the source code
+if SourceLanguageCode == TargetLanguageCode:
+    logging.warning("The SourceLanguageCode is the same as the TargetLanguageCode - stopping") # This will print to the console as the default level is warning
+else:
+    logging.info("The Source Language and Target Language codes are different - proceeding") # This will not print to the console because it is lower than warning
+
+
+# Import logging
+import logging
+import json
+
+# Set the log level in the basic configuration.  This means we will capture all our log entries and not just those at Warning or above.
+logging.basicConfig(filename='example.log',level=logging.DEBUG)
+
+# This uses a json string as an input
+json_string = """
+{
+    "Input":[
+        {
+        "Text":"I am learning to code in AWS",
+        "SourceLanguageCode":"en",
+        "TargetLanguageCode":"fr"
+        }
+    ]
+}
+"""
+
+json_input = json.loads(json_string)
+
+# Defines two variables to store the language code from the input.
+SourceLanguageCode = json_input['Input'][0]['SourceLanguageCode']
+TargetLanguageCode = json_input['Input'][0]['TargetLanguageCode']
+
+# The if statement checks to see if the language code is the same as the source code
+if SourceLanguageCode == TargetLanguageCode:
+    logging.warning("The SourceLanguageCode is the same as the TargetLanguageCode - stopping") # This will print to the console as the default level is warning
+else:
+    logging.info("The Source Language and Target Language codes are different - proceeding") # This will not print to the console because it is lower than warning
