@@ -16,8 +16,8 @@ def lambda_handler(event, context):
 
         # Get only running instances
         instances = ec2.instances.filter(
-            Filters=[{'Name': 'instance-state-name',
-                      'Values': ['running']}])
+            Filters=[{'Name': 'instance-state-name', 'Values': ['running']},
+            {'Tags': 'Key': 'Environment','Value': ['Dev']}])
 
         # Stop the instances
         for instance in instances:

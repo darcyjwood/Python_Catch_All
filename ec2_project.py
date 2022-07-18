@@ -1,19 +1,27 @@
-#create 3 ec2s
-
 import boto3
 
-ec2_resource = boto3.resource("ec2")
-#this will generate instances based on type and ammount and will tag them
-result = ec2_resource.create_instances(ImageId = 'ami-0cff7528ff583bf9a',
-      InstanceType = 't2.micro',
-      MaxCount = 3,
-      MinCount = 3,
-      TagSpecifications = [
-                           {
-                               'ResourceType': 'instance',
-                               'Tags': [{'Key': 'Environment','Value': 'Dev'}],
-                           },
-                       ],
-                       )
 
-print(result)
+def lambda_handler(event, context):
+    ec2_client = boto3.client('ec2')
+    regions = [region['RegionName']
+               for region in ec2_client.describe_regions()['Regions']]
+
+    for region in regions:
+        ec2 = boto3.resource('ec2', region_name=region)
+
+        print("Region:", region)
+
+        running_instances = ec2.instances.filter(
+            Filters=[{'Name': 'instance-state-name',
+                      'Values': ['running']}])
+        tagged_instances = ec2.instances.filter(
+            Filters=[{'ResourceType': 'instance',
+                      'Tags': [{'Key': 'Environment','Value': 'Dev'}]
+                      }])
+        
+        instances = ('running_instances' + 'tagged_instances')
+       
+        for instance in instances:
+            instance.stop()
+            print('Stopped instance: ', instance.id)
+

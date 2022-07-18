@@ -16,4 +16,4 @@ result = ec2_resource.create_instances(ImageId = 'ami-0cff7528ff583bf9a',
                        ],
                        )
 
-print(result)      
+print(result)
