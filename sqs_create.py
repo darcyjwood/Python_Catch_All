@@ -11,3 +11,4 @@ queue = sqs.create_queue(QueueName = 'MySQSQueue', Attributes = {'DelaySeconds':
 
 print(queue.url)
 print(queue.attributes.get('DelaySeconds'))
+
